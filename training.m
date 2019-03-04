@@ -1,0 +1,10 @@
+NN = alexnet;
+layers = NN.Layers; 
+layers(23)=fullyConnectedLayer(14);
+layers(25)=classificationLayer;
+ilr=0.0001;
+mxEpochs = 15;
+mbSize = 10;
+opts = trainingOptions('sgdm','InitialLearnRate',ilr,'MaxEpochs',mxEpochs,'MiniBatchSize',mbSize,'Plots','training-progress');
+trainingImage.ReadFcn = @readFunctionTrain;
+myNET = trainNetwork(trainingImage,layers,opts);
